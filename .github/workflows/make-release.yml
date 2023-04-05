@@ -1,0 +1,19 @@
+---
+
+name: Make a Release
+
+on:
+  workflow_run:
+    workflows: [Build Lilypond Project]
+    types: [completed]
+    branches: [main]
+
+
+jobs:
+
+  make-release:
+    uses: VinLudens/lilypond-reusable-workflows/.github/workflows/make-release.yml@main
+    permissions:
+      contents: write
+    with:
+      MAIN_FILE: ${{ vars.MAIN_FILE }}
